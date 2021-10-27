@@ -22,7 +22,46 @@
       </div>
     </header>
 
-    <hr class="hr">
+    <div class="content">
+      <div class="stretch"></div>
+      <div class="text-segment">
+        <p>Demonstration on the use of Pager class</p>
+        <p>The class is contained in <code>script.js</code></p>
+        <p>Get this file from the <a targer="_blank" href="https://github.com/hiteshlala/pager">hiteshlala/pager repo</a></p>
+        <p>Embed in your html:</p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="pager"&gt;&lt;/div&gt;
+    &lt;script src="pager.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <p>Instantiate the pager:</p>
+        <pre>
+&lt;script&gt;
+  let pager;
+  const numberOfPages = 52;
+  const pagesDisplayWindow = 6;
+  function updatePageCallback(page) {
+    console.log('Load something for page number', 
+      page);
+  }
+  window.onload = function() {
+    pager = new Pager(
+      numberOfPages, 
+      pagesDisplayWindow, 
+      updatePageCallback, 
+      'pager');
+  };
+&lt;/script&gt;
+        </pre>
+        <p>The pager with default styling is shown below:</p>
+      </div>
+      <div class="stretch"></div>
+    </div>
 
     <div class="content">
       <div class="stretch"></div>
@@ -33,7 +72,39 @@
       <div class="stretch"></div>
     </div>
 
-    <hr class="hr">
+    <div class="content">
+      <div class="stretch"></div>
+      <div class="text-segment">
+        <p>To adjust the styles add a JSON with style overides. As shown below:</p>
+        <pre>
+let pager;
+const numberOfPages = 52;
+const pagesDisplayWindow = 4;
+function updatePageCallback(page) {
+  console.log('Load something for page number', 
+    page);
+}          
+const overideStyles = { 
+  pager: '{ justify-content: center }',
+  'pager-button': `{ border: 1px solid #6c9393; 
+        border-radius: 5px; background-color: white;}`,
+  clickable: '{ background-color: #d0d0d0; }',
+  'clickable:hover': '{border: 1px solid #f2d2f3;}',
+  selected: '{ color: #5353c6 }'
+};
+window.onload = function() {
+  pager = new Pager(
+    numberOfPages, 
+    pagesDisplayWindow, 
+    updatePageCallback, 
+    'pager', 
+    overideStyles);
+};
+        </pre>
+        <p>The pager with overidden styleing is shown below:</p>
+      </div>
+      <div class="stretch"></div>
+    </div>
 
     <div class="content">
       <div class="stretch"></div>
@@ -44,6 +115,14 @@
       <div class="stretch"></div>
     </div>
 
+    <div class="content">
+      <div class="stretch"></div>
+      <div class="text-segment attribution">
+        <p>Card deck image from <a target="_blank" href="https://www.pngfind.com/mpng/hbJTwT_standard-52-card-deck-playing-card-card-game/">pngfind.com</a>.</p>
+      </div>
+      <div class="stretch"></div>
+    </div>
+    
     <div class="stretch"></div>
       
 
@@ -82,15 +161,6 @@
           }
         );
       };
-
-      function getQuery() {
-        const search = window.location.search.substr(1);
-        const keyvals = search.split('&').map( kv => kv.split('='));
-        return keyvals.reduce((result, curr) => {
-          result[curr[0]] = curr[1];
-          return result;
-        }, {});
-      }
 
       function updatePage( outElement ) { 
         // pngfind.com-playing-cards-png-390672.png

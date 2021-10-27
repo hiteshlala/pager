@@ -112,9 +112,11 @@ footer {
   margin-top: 15px;
 }
 
-.hr {
+.text-segment {
   max-width: 500px;
   width: 100vw;
-  margin-top: 10px;
-  margin-bottom: 10px;
+}
+
+.attribution {
+  font-size: 11px;
 }
